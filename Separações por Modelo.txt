@@ -1,0 +1,16 @@
+waterfall:
+	2 requerimentos, analise e design (1 deles cliente)
+	4 implementação (1 teste)  (6 total)
+spiral:
+	3 plan, risk analysis e evaluate (1 deles risk analysis e 1 evaluate)
+	3 engineering  (6 total)
+v-model:
+	2 coleta, analise e design (1 deles cliente)
+	2 módulo e código
+	2 testes    (6 total)
+Agile:
+	1 po
+	1 sm
+	3 devs
+	1 tester
+	1 cliente (7 total)
