@@ -35,7 +35,7 @@ public class TarefaController implements CommandLineRunner {
                     case 2 -> tarefaService.listaTarefa();
                     case 3 -> tarefaService.concluirTarefa();
                     case 4 -> tarefaService.removerTarefa();
-                    case 0 -> System.out.println("Saindo da aplicação...");
+                    case 5 -> System.out.println("Saindo da aplicação...");
 
                     default -> {
                         System.out.println("Opção invalida \n");
