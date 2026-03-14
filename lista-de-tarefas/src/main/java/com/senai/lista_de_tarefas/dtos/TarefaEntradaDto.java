@@ -1,11 +1,21 @@
 package com.senai.lista_de_tarefas.dtos;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class TarefaEntradaDto {
 
-    private int codigo;
+
+    @NotBlank(message = "Titulo é obrigatório!") //@NotBlank significa (Não pode ser null - Não pode ser vazio -Não pode conter apenas espaços " ")
     private String titulo;
+
+    @NotBlank(message = "Descrição da tarefa é obrigatória!")
     private String descricao;
+
+    @NotNull(message = "O campo não pode ser nulo ou vazio")
+    private int codigo;
+
     private StatusEnum status;
 
     public TarefaEntradaDto() {}
