@@ -4,10 +4,12 @@ import com.senai.lista_de_tarefas.dtos.StatusEnum;
 import com.senai.lista_de_tarefas.dtos.TarefaEntradaDto;
 
 import com.senai.lista_de_tarefas.util.ConsoleUtils;
+import jakarta.validation.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 
 @Service
 public class TarefaService {
@@ -20,18 +22,35 @@ public class TarefaService {
 
     ArrayList<TarefaEntradaDto> tarefa = new ArrayList<>();
 
+    // Iniciando o validador que vai me ajudar a não ficar validando muita coisa manualmente.
+    private final Validator validator;
+    public TarefaService() {
+        ValidatorFactory valida = Validation.buildDefaultValidatorFactory();
+        this.validator = valida.getValidator();
+    }
+
+
+
     // Adicionar uma tarefa
     public void cadastrarTarefa(TarefaEntradaDto entradaDto){
+
         TarefaEntradaDto entrada = ConsoleUtils.criarTarefaDto(sc);
 
-        entradaDto.setCodigo(contadorCodigo++); // Aqui estou numerando o código ++ para que não repita numero
-        entradaDto.setStatus(StatusEnum.PENDENTE); // Aqui ele sempre inicia em Status PENDENTE.
+        Set<ConstraintViolation<TarefaEntradaDto>> erros = validator.validate(entrada); // chamando o médoto validador.
 
-        entradaDto.setTitulo(entrada.getTitulo());
-        entradaDto.setDescricao(entrada.getDescricao());
-        System.out.println( "Tarefa cadastrado com sucesso!\n");
+        if (!erros.isEmpty()) {
+            for (ConstraintViolation<TarefaEntradaDto> erro : erros) {
+                System.out.println(erro.getMessage());
+            }
+            return;
+        }
 
-        tarefa.add(entradaDto);
+        entrada.setCodigo(contadorCodigo++);
+        entrada.setStatus(StatusEnum.PENDENTE);
+
+        tarefa.add(entrada);
+
+        System.out.println("Tarefa cadastrada com sucesso!\n");
     }
 
     // Visualizar todas as tarefas
