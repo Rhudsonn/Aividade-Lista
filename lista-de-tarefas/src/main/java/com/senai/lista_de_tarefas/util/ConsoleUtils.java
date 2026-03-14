@@ -14,7 +14,7 @@ public class ConsoleUtils {
         System.out.println("2 - Visualizar todas as tarefas.");
         System.out.println("3 - Marcar uma tarefa como concluída");
         System.out.println("4 - Remover tarefa.");
-        System.out.println("0 - Encerrar o programa.");
+        System.out.println("5 - Encerrar o programa.");
     }
 
     // Coloquei este metodo para Ler Strings e evitar duplicar varias vezes elas no codigo.
@@ -25,6 +25,7 @@ public class ConsoleUtils {
 
     // Metodo auxiliar para Imprimir Tarefas asim evita duplicar elas no controller.
     public static void imprimirTarefa(TarefaEntradaDto entradaDto) {
+        System.out.println("------------------------------------");
         System.out.println("Código: " + entradaDto.getCodigo());
         System.out.println("Titulo: " + entradaDto.getTitulo());
         System.out.println("Descricao: " + entradaDto.getDescricao());
@@ -34,6 +35,7 @@ public class ConsoleUtils {
     // Metodo que vai me auxiliar  Criar TarefaDto evitando duplicadas.
     public static TarefaEntradaDto criarTarefaDto(Scanner sc) {
         TarefaEntradaDto entradaDto = new TarefaEntradaDto();
+        System.out.println("------------------------------");
         entradaDto.setTitulo(lerString(sc,"Titulo:"));
         entradaDto.setDescricao(lerString(sc,"Descricao:"));
         return entradaDto;
