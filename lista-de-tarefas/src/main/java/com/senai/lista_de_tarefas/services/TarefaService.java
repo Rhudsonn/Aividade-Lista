@@ -36,13 +36,21 @@ public class TarefaService {
 
     // Visualizar todas as tarefas
     public void listaTarefa(){
-        for (TarefaEntradaDto e: tarefa) {
+        if (tarefa.isEmpty()) {
+            System.out.println("Nenhuma tarefa cadastrada.\n");
+            return;
+        }
+        for (TarefaEntradaDto e : tarefa) {
             ConsoleUtils.imprimirTarefa(e);
         }
     }
 
     // Marcar uma tarefa como concluída
     public void concluirTarefa(){
+        if (tarefa.isEmpty()) {
+            System.out.println("Nenhuma tarefa cadastrada.\n");
+            return;
+        }
         System.out.println("Digite o codigo da tarefa:");
         int codigo = sc.nextInt();
 
@@ -52,22 +60,27 @@ public class TarefaService {
                 System.out.println( "Tarefa concluida com sucesso!\n");
                 return;
             }
-            System.out.println("Tarefa não encontrada!\n");
         }
+        System.out.println("Tarefa não encontrada!\n");
     }
 
     // Remover uma tarefa
     public void removerTarefa(){
+        if (tarefa.isEmpty()) {
+            System.out.println("Nenhuma tarefa cadastrada.\n");
+            return;
+        }
         System.out.println("Digite o codigo da tarefa:");
         int codigo = sc.nextInt();
 
         for (TarefaEntradaDto e: tarefa) {
             if (e.getCodigo() == codigo) {
                 tarefa.remove(e);
+                System.out.println("Tarefa removida com sucesso!\n");
+                return;
             }
-            System.out.println("Tarefa removido com sucesso!\n");
-            return;
         }
+        System.out.println("Tarefa não encontrada!\n");
     }
 
 
