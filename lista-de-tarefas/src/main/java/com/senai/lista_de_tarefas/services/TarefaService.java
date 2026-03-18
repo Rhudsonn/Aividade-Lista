@@ -102,6 +102,10 @@ public class TarefaService {
         System.out.println("Tarefa não encontrada!\n");
     }
 
+    public void finalizarSistema(){
+        System.out.printf("Sistema finalizado!");
+    }
+
 
 
 
